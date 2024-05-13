@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+
+if [ -z ${PROJECT_ROOT} ]; then
+  PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+fi
+
+cd "${PROJECT_ROOT}"
+
+# Clean build
+rm -r dist/
+
+# Build library
+python3 -m build

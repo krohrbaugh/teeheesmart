@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Setup project for development.
+#
+# NOTE: Does _not_ manage Python install or virtual environments; ensure
+# those are setup before running!
+#
+set -e
+set -o pipefail
+
+if [ -z ${PROJECT_ROOT} ]; then
+  PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+fi
+
+cd "${PROJECT_ROOT}"
+
+pip install --upgrade -r requirements_dev.txt

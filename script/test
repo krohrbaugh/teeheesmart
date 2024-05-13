@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Run test suite
+#
+set -e
+set -o pipefail
+
+if [ -z "${PROJECT_ROOT}" ]; then
+  PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+fi
+
+cd "${PROJECT_ROOT}"
+pytest "$@"

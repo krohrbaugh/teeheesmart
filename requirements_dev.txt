@@ -1,0 +1,11 @@
+# Development dependencies
+-r requirements.txt
+build >= 1.0.0
+pytest >= 8.0.0
+pytest-mock >= 3.12.0
+pytest-watcher >= 0.4.1
+twine >= 4.0.0
+
+# Adds the library itself as an editable path, allowing for module name resolution
+# in REPL and pytest, without manually setting PYTHONPATH.
+-e .
