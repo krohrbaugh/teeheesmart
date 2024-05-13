@@ -9,7 +9,7 @@ fi
 cd "${PROJECT_ROOT}"
 
 # Clean build
-rm -r dist/
+rm -rf dist/
 
 # Build library
 python3 -m build
