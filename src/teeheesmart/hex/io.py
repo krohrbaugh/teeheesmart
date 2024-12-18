@@ -14,11 +14,11 @@ class Command(IntEnum):
   # See https://support.tesmart.com/hc/en-us/article_attachments/27716605047961 for command documentation
   NULL_RESPONSE = 0
   SWITCH_VIDEO = 1
-  ENABLE_BUZZER = 2
-  LED_TIMEOUT =  3
+  MUTE_BUZZER = 2
+  LED_TIMEOUT_SECONDS =  3
   QUERY_ACTIVE_INPUT = 16
   CURRENT_ACTIVE_INPUT = 17
-  ENABLE_INPUT_DETECTION = 129
+  DISABLE_INPUT_DETECTION = 129
 
   @classmethod
   def is_supported(cls, cmd_id: int) -> bool:

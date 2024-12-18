@@ -189,7 +189,7 @@ class TestTcpDevice:
     expected_bytes1 = Codec.encode(instruction1)
     instruction2 = Instruction(Command.SWITCH_VIDEO, 1)
     expected_bytes2 = Codec.encode(instruction2)
-    instruction3 = Instruction(Command.ENABLE_BUZZER, True)
+    instruction3 = Instruction(Command.MUTE_BUZZER, True)
     expected_bytes3 = Codec.encode(instruction3)
     instructions = [instruction1, instruction2, instruction3]
     fake_socket = self.stub_socket(monkeypatch)
@@ -210,7 +210,7 @@ class TestTcpDevice:
       caplog.set_level(logging.INFO)
       instruction1 = Instruction(Command.QUERY_ACTIVE_INPUT)
       instruction2 = Instruction(Command.SWITCH_VIDEO)
-      instruction3 = Instruction(Command.ENABLE_BUZZER, True)
+      instruction3 = Instruction(Command.MUTE_BUZZER, True)
       instructions = [instruction1, instruction2, instruction3]
       fake_socket = self.stub_socket(monkeypatch)
       fake_socket.should_timeout = True
