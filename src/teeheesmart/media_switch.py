@@ -13,6 +13,21 @@ class MediaSwitch(Protocol):
     Select the specified video input
     """
 
+  def set_buzzer_muting(self, mute_buzzer: bool) -> None:
+    """
+    Enable or disable the buzzer
+    """
+
+  def set_led_timeout_seconds(self, led_timeout_seconds: int) -> None:
+    """
+    Set the LED timeout
+    """
+
+  def set_auto_input_detection(self, disable_auto_input_detection: bool) -> None:
+    """
+    Eanble or disable input auto-detection
+    """
+
   def update(self) -> None:
     """
     Refresh device state.
