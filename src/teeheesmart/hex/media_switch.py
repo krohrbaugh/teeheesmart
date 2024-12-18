@@ -25,7 +25,36 @@ class MediaSwitch(MediaSwitchProtocol):
 
     instruction = Instruction(Command.SWITCH_VIDEO, normalized_input)
     self._process(instruction)
-  
+
+  def set_buzzer_mute (self, input: bool) -> None:
+    """
+    Enable or disable the buzzer
+    """
+    instruction = Instruction(Command.ENABLE_BUZZER, input)
+    self._process(instruction)
+
+  def set_led_timeout (self, input: int) -> None:
+    """
+    Set the LED timeout
+    """
+    normalized_input = input
+    if normalized_input < 1:
+      normalized_input = 0
+    elif normalized_input < 11:
+      normalized_input = 10
+    else:
+      normalized_input = 30
+
+    instruction = Instruction(Command.LED_TIMEOUT, normalized_input)
+    self._process(instruction)
+
+  def set_input_detection (self, input: bool) -> None:
+    """
+    Eanble or disable input auto-detection
+    """
+    instruction = Instruction(Command.ENABLE_INPUT_DETECTION, input)
+    self._process(instruction)
+
   def update(self) -> None:
     self._process(self._update_instructions())
 
@@ -82,5 +111,3 @@ class MediaSwitch(MediaSwitchProtocol):
       # Queries the currently selected input
       Instruction(Command.QUERY_ACTIVE_INPUT)
     ]
-
-
