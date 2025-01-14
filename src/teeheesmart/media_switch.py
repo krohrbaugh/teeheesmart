@@ -25,7 +25,7 @@ class MediaSwitch(Protocol):
 
   def set_auto_input_detection(self, enable_auto_input_detection: bool) -> None:
     """
-    Eanble or disable input auto-detection
+    Enable or disable input auto-detection
     """
 
   def update(self) -> None:
