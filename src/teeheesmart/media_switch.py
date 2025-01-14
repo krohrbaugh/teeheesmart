@@ -23,7 +23,7 @@ class MediaSwitch(Protocol):
     Set the LED timeout
     """
 
-  def set_auto_input_detection(self, disable_auto_input_detection: bool) -> None:
+  def set_auto_input_detection(self, enable_auto_input_detection: bool) -> None:
     """
     Eanble or disable input auto-detection
     """

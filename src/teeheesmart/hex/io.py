@@ -18,7 +18,7 @@ class Command(IntEnum):
   LED_TIMEOUT_SECONDS =  3
   QUERY_ACTIVE_INPUT = 16
   CURRENT_ACTIVE_INPUT = 17
-  DISABLE_INPUT_DETECTION = 129
+  ENABLE_INPUT_DETECTION = 129
 
   @classmethod
   def is_supported(cls, cmd_id: int) -> bool:
