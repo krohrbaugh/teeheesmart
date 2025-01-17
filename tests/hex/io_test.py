@@ -189,15 +189,18 @@ class TestTcpDevice:
     expected_bytes1 = Codec.encode(instruction1)
     instruction2 = Instruction(Command.SWITCH_VIDEO, 1)
     expected_bytes2 = Codec.encode(instruction2)
-    instructions = [instruction1, instruction2]
+    instruction3 = Instruction(Command.MUTE_BUZZER, True)
+    expected_bytes3 = Codec.encode(instruction3)
+    instructions = [instruction1, instruction2, instruction3]
     fake_socket = self.stub_socket(monkeypatch)
     sut = self.create_device()
 
     sut.process(instructions)
 
-    assert fake_socket.send_count == 2
+    assert fake_socket.send_count == 3
     assert fake_socket.request_bytes[0] == expected_bytes1
     assert fake_socket.request_bytes[1] == expected_bytes2
+    assert fake_socket.request_bytes[2] == expected_bytes3
 
   def test_process_continues_without_erroring_when_no_response_received(
         self,
@@ -207,7 +210,8 @@ class TestTcpDevice:
       caplog.set_level(logging.INFO)
       instruction1 = Instruction(Command.QUERY_ACTIVE_INPUT)
       instruction2 = Instruction(Command.SWITCH_VIDEO)
-      instructions = [instruction1, instruction2]
+      instruction3 = Instruction(Command.MUTE_BUZZER, True)
+      instructions = [instruction1, instruction2, instruction3]
       fake_socket = self.stub_socket(monkeypatch)
       fake_socket.should_timeout = True
       sut = self.create_device()
@@ -215,7 +219,7 @@ class TestTcpDevice:
       result = sut.process(instructions)
 
       assert 'Timed out' in caplog.text
-      assert fake_socket.send_count == 2
+      assert fake_socket.send_count == 3
       assert len(result) == 0
     
   def test_process_returns_response_instructions(self, monkeypatch: pytest.MonkeyPatch):
@@ -267,4 +271,3 @@ def gen_invalid_io_value(rand = random) -> int:
 
 def gen_port(rand = random) -> int:
   return rand.randrange(49152, 65535)
-
